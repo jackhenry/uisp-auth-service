@@ -26,6 +26,7 @@ pub fn init() {
         conn.check_connection(),
         "Redis connection check failed. Check connection to redis server."
     );
+    info!("Finished initializing redis connection");
 }
 
 pub fn connection() -> Result<CacheConnection, ApiError> {
@@ -34,8 +35,9 @@ pub fn connection() -> Result<CacheConnection, ApiError> {
 }
 
 pub async fn populate() -> Result<(), ApiError> {
+    info!("Populating redis cache with device addresses and client ids");
     let device_list = UISP_INSTANCE.fetch_device_list().await?;
-
+    info!("Finished populating redis cache");
     //println!("Device list length: {}", device_list.len());
 
     let mut count = 0;

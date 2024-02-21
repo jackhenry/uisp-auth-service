@@ -16,14 +16,14 @@ async fn main() -> std::io::Result<()> {
     dotenv().ok();
     env_logger::init();
     cache::init();
-    //cache::populate().await.expect("Failed to populate cache.");
+    cache::populate().await.expect("Failed to populate cache.");
 
     let mut listenfd = ListenFd::from_env();
     let mut server = HttpServer::new(|| App::new().configure(login::init_routes));
     server = if let Some(listener) = listenfd.take_tcp_listener(0)? {
         server.listen(listener)?
     } else {
-        server.bind(("127.0.0.1", 8080))?
+        server.bind(("0.0.0.0", 8080))?
     };
 
     server.run().await
