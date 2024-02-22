@@ -25,8 +25,8 @@ Sending a GET request to this endpoint will result in a HTTP redirect to the man
 ### 1. Clone the repo
 
 ```
-git clone https://github.com/jackhenry/unms-auth-service.git
-cd unms-auth-service
+git clone https://github.com/jackhenry/uisp-auth-service.git
+cd uisp-auth-service
 ```
 
 ### 2. Populate the required environment variables.
@@ -52,7 +52,7 @@ nano .env
 
 ```
 cargo build --release
-export $(cat .env | xargs) && ./target/release/unms-auth-service
+export $(cat .env | xargs) && ./target/release/uisp-auth-service
 ```
 
 `With Docker`

@@ -38,10 +38,8 @@ pub async fn populate() -> Result<(), ApiError> {
     info!("Populating redis cache with device addresses and client ids");
     let device_list = UISP_INSTANCE.fetch_device_list().await?;
     info!("Finished populating redis cache");
-    //println!("Device list length: {}", device_list.len());
 
     let mut count = 0;
-
     for device in device_list {
         // Cache the device id if it's cacheable (IP address exists)
         if let Ok(device) = CacheableDevice::try_from(device) {
@@ -50,7 +48,7 @@ pub async fn populate() -> Result<(), ApiError> {
         }
     }
 
-    //println!("Total: {}", count);
+    info!("Populated {} within redis cache", count);
     Ok(())
 }
 
